@@ -1,5 +1,6 @@
 import '../pages/index.css';
-
+import { initialCards } from './cards.js';
+// import {  } from "./validation.js";
 const profileEditButton = document.querySelector('.profile__edit-button')
 const popupProfile = document.querySelector('.popup_type_edit')
 const closePopupProfileBtn = popupProfile.querySelector('.popup__close')
