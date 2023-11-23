@@ -1,37 +1,24 @@
 const cardTemplate = document.querySelector('.template-element').content;
 
-export const createElement = (name, link, openImgPopup) => {
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  cardElement.querySelector('.element__place').textContent = name;
-  const cardPhoto = cardElement.querySelector('.element__img');
-  cardPhoto.src = link;
-  cardPhoto.alt = name;
+export function createElement(name, link, alt_name, openImagePopup) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardItem = cardElement.querySelector('.element');
+  const likeButton = cardItem.querySelector('.element__like');
+  const imgButton = cardItem.querySelector('.element__img');
+  const deleteButton = cardItem.querySelector('.element__delete');
 
-  cardElement.querySelector('.element__like').addEventListener('click', evt => evt.target.classList.toggle('element__like_active'));
+  imgButton.src = link;
+  cardItem.querySelector('.element__place').textContent = name;
+  imgButton.alt = name;
 
-  cardElement.querySelector('.element__delete').addEventListener('click', () => cardElement.remove());
+  likeButton.addEventListener('click', evt => evt.target.classList.toggle('element__like_active'));
 
-  cardElement.querySelector('.element__img').addEventListener('click', (name, link) => {
-    openImgPopup(name, link);
-  })
+  deleteButton.addEventListener('click', () => cardItem.remove());
 
-  return cardElement;
-  
+  imgButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    openImagePopup(evt);
+  });
+
+  return cardItem;
 }
-
-// const popupImageImage = popupImage.querySelector('.popup__image');
-// const popupImageDiscription = popupImage.querySelector('.popup__caption');
-// const nameCard = popupPlace.querySelector('.popup__input_place_name');
-// const linkCard = popupPlace.querySelector('.popup__input_place_image');
-// добавляем карточку
-
-export  const addNewCard = evt => {
-  evt.preventDefault();
-  container.prepend(createElement(nameCard.value, linkCard.value));
-  nameCard.value = "";
-  linkCard.value = "";
-  closePopup(popupPlace);
-  blockButton(btnSubmitCard);
-}
-
-// btnSubmitCard.addEventListener('click', addNewCard);
