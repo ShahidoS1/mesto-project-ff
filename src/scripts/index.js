@@ -5,16 +5,16 @@ import { createElement } from "./components/card.js";
 // import {  } from "./validation.js";
 const profileEditButton = document.querySelector('.profile__edit-button')
 const popupProfile = document.querySelector('.popup_type_edit')
-const closePopupProfileBtn = popupProfile.querySelector('.popup__close')
+const buttonClosePopupProfile = popupProfile.querySelector('.popup__close')
 const formEditProfileForm = document.querySelector('.popup__content')
 const nameInput = formEditProfileForm.querySelector('.popup__input_text_name')
 const jobInput = formEditProfileForm.querySelector('.popup__input_text_job')
 const profileName = document.querySelector('.profile__name')
 const profileJob = document.querySelector('.profile__job')
 const buttonEdit = document.querySelector('.popup__button_edit')
-const openPopupPlaceBtn = document.querySelector('.profile__add-button')
+const buttonOpenpenPopupPlace = document.querySelector('.profile__add-button')
 const popupPlace = document.querySelector('.popup_place_add')
-const closePopupPlaceBtn = popupPlace.querySelector('.popup__close')
+const buttonClosePopupPlace = popupPlace.querySelector('.popup__close')
 
 const container = document.querySelector('.elements')
 // const cardTemplate = document.querySelector('.template-element').content;
@@ -29,7 +29,7 @@ profileEditButton.addEventListener('click', function() {
   jobInput.value = profileJob.textContent;
 });
 
-closePopupProfileBtn.addEventListener('click', function () {
+buttonClosePopupProfile.addEventListener('click', function () {
   closePopup(popupProfile);
 });
 
@@ -44,7 +44,7 @@ function submitEditProfileForm (evt) {
     // Выберите элементы, куда должны быть вставлены значения полей
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    blockButton(buttonEdit);
+    // blockButton(buttonEdit);
     closePopup(popupProfile);
     // Вставьте новые значения с помощью textContent
 }
@@ -53,11 +53,11 @@ function submitEditProfileForm (evt) {
 // он будет следить за событием “submit” - «отправка»
 formEditProfileForm.addEventListener('submit', submitEditProfileForm); 
 
-openPopupPlaceBtn.addEventListener('click', function () {
+buttonOpenpenPopupPlace.addEventListener('click', function () {
   openPopup(popupPlace);
 });
 
-closePopupPlaceBtn.addEventListener('click', function () {
+buttonClosePopupPlace.addEventListener('click', function () {
   closePopup(popupPlace);
 });
 
@@ -104,14 +104,12 @@ const cardImage = document.querySelector('.element__img');
 const closePopupImageBtn = popupImage.querySelector('.popup__close');
 const cardName = document.querySelector('.element__place');
 
-function openImagePopup(event) {
-  event.preventDefault();
+function openImagePopup(evt) {
   openPopup(popupImage);
-  const imageSource = event.target.src;
-  const caption = event.target.alt;
-  popupImageImage.src = imageSource;
-  popupImageImage.alt = caption;
-  popupImageDiscription.textContent = caption;
+  
+  popupImageImage.src = evt.target.src;
+  popupImageImage.alt = evt.target.alt;
+  popupImageDiscription.textContent = evt.target.alt;
 }
 
 closePopupImageBtn.addEventListener('click', function () {
