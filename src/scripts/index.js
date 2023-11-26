@@ -104,12 +104,12 @@ const cardImage = document.querySelector('.element__img');
 const closePopupImageBtn = popupImage.querySelector('.popup__close');
 const cardName = document.querySelector('.element__place');
 
-function openImagePopup(evt) {
+function openImagePopup(name, link) {
   openPopup(popupImage);
   
-  popupImageImage.src = evt.target.src;
-  popupImageImage.alt = evt.target.alt;
-  popupImageDiscription.textContent = evt.target.alt;
+  popupImageImage.src = link;
+  popupImageImage.alt = name;
+  popupImageDiscription.textContent = name;
 }
 
 closePopupImageBtn.addEventListener('click', function () {

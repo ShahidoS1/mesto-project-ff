@@ -17,7 +17,7 @@ export function createElement(name, link, alt_name, openImagePopup) {
 
   imgButton.addEventListener('click', (evt) => {
     evt.preventDefault();
-    openImagePopup(evt);
+    openImagePopup(name,link);
   });
 
   return cardItem;
