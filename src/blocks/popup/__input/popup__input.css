@@ -21,3 +21,22 @@
   }
 
 } */
+
+.popup__input_type_error {
+  border-bottom: 1px solid #ff0000;
+}
+
+.popup__input-error {
+  display: block;
+  color: #f00;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  min-height: 30px;
+  margin-top: 5px;
+}
+
+.popup__error_visible {
+  display: block;
+}

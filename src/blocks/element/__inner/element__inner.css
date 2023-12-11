@@ -2,4 +2,5 @@
   display: flex;
   justify-content: space-between;
   padding: 25px 21px 26px;
+  align-items: center;
 }
