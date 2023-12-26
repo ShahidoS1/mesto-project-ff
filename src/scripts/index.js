@@ -104,9 +104,7 @@ function handleEditForm(evt) {
       profileDescription.textContent = res.about;
       closePopup(editPopup);
     })
-    .catch((error) => {
-      console.log(error);
-    })
+    .catch(console.error)
     .finally(() => {
       showLoadingBtn(false, editSaveButton);
     });
@@ -148,9 +146,7 @@ function handleAddForm(evt) {
       placesList.prepend(newCard);
       closePopup(addCardPopup);
     })
-    .catch((error) => {
-      console.log(error);
-    })
+    .catch(console.error)
     .finally(() => {
       showLoadingBtn(false, addSaveButton);
     });
@@ -197,9 +193,7 @@ function handleAvatarForm(evt) {
       profileImage.style.backgroundImage = `url('${res.avatar}')`;
       closePopup(profilePopup);
     })
-    .catch((error) => {
-      console.log(error);
-    })
+    .catch(console.error)
     .finally(() => {
       showLoadingBtn(false, profileSaveButton);
     });
@@ -230,9 +224,7 @@ function deleteThisCard({ cardId, deleteButton }) {
       deleteItem.remove();
       closeDeletePopup();
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch(console.error);
 }
 
 ///функция подтверждения удаления карточки
