@@ -104,7 +104,10 @@ function handleEditForm(evt) {
       profileDescription.textContent = res.about;
       closePopup(editPopup);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.log(error);
+      editSaveButton.disabled = false;
+    })
     .finally(() => {
       showLoadingBtn(false, editSaveButton);
     });
@@ -146,7 +149,10 @@ function handleAddForm(evt) {
       placesList.prepend(newCard);
       closePopup(addCardPopup);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.log(error);
+      addSaveButton.disabled = false;
+    })
     .finally(() => {
       showLoadingBtn(false, addSaveButton);
     });
@@ -169,14 +175,14 @@ function showImgPopup(evt) {
 
 /// Popup редактирования аватара
 const profileImageButton = document.querySelector(".profile__avatar-edit");
-const profileImage = document.querySelector(".profile__avatar");
-const profilePopup = document.querySelector(".popup_type_avatar");
+const avatarImage = document.querySelector(".profile__avatar");
+const avatarPopup  = document.querySelector(".popup_type_avatar");
 const avatarForm = document.forms["avatar_edit"];
-const profileLinkInput = avatarForm.querySelector(".popup__input_avatar_image");
-const profileSaveButton = profilePopup.querySelector(".popup__button");
+const avatarInput = avatarForm.querySelector(".popup__input_avatar_image");
+const avatarSaveButton = avatarPopup.querySelector(".popup__button");
 
 profileImageButton.addEventListener("click", () => {
-  openPopup(profilePopup);
+  openPopup(avatarPopup);
   avatarForm.reset();
   clearValidation(avatarForm, validationConfig);
 });
@@ -184,18 +190,20 @@ profileImageButton.addEventListener("click", () => {
 /// Функция смены аватара
 function handleAvatarForm(evt) {
   evt.preventDefault();
-  const linkValue = profileLinkInput.value;
-  profileImage.style.backgroundImage = linkValue;
-  showLoadingBtn(true, profileSaveButton);
-  profileSaveButton.disabled = true;
+  const linkValue = avatarInput.value;
+  showLoadingBtn(true, avatarSaveButton);
+  avatarSaveButton.disabled = true;
   updateNewAvatar(linkValue)
     .then((res) => {
-      profileImage.style.backgroundImage = `url('${res.avatar}')`;
-      closePopup(profilePopup);
+      avatarImage.style.backgroundImage = `url('${res.avatar}')`;
+      closePopup(avatarPopup);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.log(error);
+      avatarSaveButton.disabled = false;
+    })
     .finally(() => {
-      showLoadingBtn(false, profileSaveButton);
+      showLoadingBtn(false, avatarSaveButton);
     });
 }
 
@@ -244,7 +252,7 @@ Promise.all([getUserInfo(), getInitialCards()])
     profileTitle.textContent = userList.name;
     profileDescription.textContent = userList.about;
     profileId = userList._id;
-    profileImage.style.backgroundImage = `url(${userList.avatar})`;
+    avatarImage.style.backgroundImage = `url(${userList.avatar})`;
     fillCards(initialCards, profileId);
   })
   .catch(console.error);
